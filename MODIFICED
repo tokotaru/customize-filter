@@ -1,0 +1,71 @@
+from telethon import TelegramClient, sync, events
+import os
+# Вставляем api_id и api_hash
+
+import time as t
+print("\033")
+t.sleep(1)
+print(" _         _         _                   ")
+t.sleep(1)
+print("| |_  ___ | |__ ___ | |_  __ _  _ _  _  _ ")
+t.sleep(1)
+print("|  _|/ _ \| / // _ \|  _|/ _` || '_|| || |")
+t.sleep(1)
+print(" \__|\___/|_\_\\___/ \__|\__/_||_|   \_._|")
+f = "нет"
+t = "да"
+t.sleep(2)
+api_id = int( input("ваш api id :"))
+api_hash = input("ваш api hash :")
+a = input(' добавить ваш тригер :')
+mylist = ["fuck"]
+mylist.append(a)
+a = input(' добавить ваш тригер :')
+mylist.append(a) 
+aaa = input("еще?")
+while aaa == t :
+   a = input(' добавить ваш тригер :')
+   mylist.append(a) 
+   aaa = input("еще?")
+client = TelegramClient('triger custom', api_id, api_hash)
+print("что вы хотите:")
+print("1:удалять сообщения")
+print("2:отвечать на сообщения")
+print("3:просто отправлять сообщение")
+print("введите здесь число от 1 до 3 ниже:")
+number = input("здесь:")
+if number == "1" :
+   @client.on(events.NewMessage(chats=(input('название группы :'))))
+   async def normal_handler(event):
+       sender = await event.get_sender()
+#     print(event.message)
+       message = event.message.to_dict()['message']
+       for i in mylist:
+          if i == message :
+             await event.delete()
+   client.start()
+   client.run_until_disconnected()
+if number == "2" :
+   q = input("чем нужно ответить:")
+   @client.on(events.NewMessage(chats=(input('название группы :'))))
+   async def normal_handler(event):
+       sender = await event.get_sender()
+#     print(event.message)
+       message = event.message.to_dict()['message']
+       for i in mylist:
+          if i == message :
+             await event.reply(q)
+   client.start()
+   client.run_until_disconnected()
+if number == "3" :
+   q = input("что нужно отослать:")
+   @client.on(events.NewMessage(chats=(input('название группы :'))))
+   async def normal_handler(event):
+       sender = await event.get_sender()
+#     print(event.message)
+       message = event.message.to_dict()['message']
+       for i in mylist:
+          if i == message :
+             await event.respond(q)
+   client.start()
+   client.run_until_disconnected()
