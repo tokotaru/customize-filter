@@ -1,0 +1,28 @@
+from telethon import TelegramClient, sync, events
+import os
+# Вставляем api_id и api_hash
+t = "да"
+f = "нет"
+api_id = int( input("ваш api id :"))
+api_hash = input("ваш api hash :")
+a = input(' добавить ваш тригер :')
+mylist = ["fuck"]
+mylist.append(a)
+a = input(' добавить ваш тригер :')
+mylist.append(a) 
+aaa = input("еще?")
+while aaa != t :
+   a = input(' добавить ваш тригер :')
+   mylist.append(a) 
+   aaa = input("еще?")
+client = TelegramClient('triger custom', api_id, api_hash)
+@client.on(events.NewMessage(chats=(input('название группы :'))))
+async def normal_handler(event):
+    sender = await event.get_sender()
+#    print(event.message)
+    message = event.message.to_dict()['message']
+    for i in mylist:
+       if message == mylist:
+          await event.delete()
+client.start()
+client.run_until_disconnected()
