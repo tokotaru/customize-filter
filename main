@@ -11,7 +11,7 @@ mylist.append(a)
 a = input(' добавить ваш тригер :')
 mylist.append(a) 
 aaa = input("еще?")
-while aaa != t :
+while aaa == t :
    a = input(' добавить ваш тригер :')
    mylist.append(a) 
    aaa = input("еще?")
@@ -22,7 +22,7 @@ async def normal_handler(event):
 #    print(event.message)
     message = event.message.to_dict()['message']
     for i in mylist:
-       if message == mylist:
+       if i == message :
           await event.delete()
 client.start()
 client.run_until_disconnected()
